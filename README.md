@@ -1,5 +1,5 @@
 # Live-search demo
-
+You must do an npm install and npm install sass.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This project doesn't includes tests.
 
