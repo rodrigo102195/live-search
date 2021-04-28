@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './LiveSearch.scss';
-import searchSVG from '../../assets/live-search/iconmonstr-search-thin.svg';
+import { ReactComponent as SvgSearch } from '../../assets/live-search/iconmonstr-search-thin.svg';
 import Spinner from '../spinner/Spinner';
 
 const LiveSearch = ({ searchData, title, placeholder }) => {
@@ -8,6 +8,8 @@ const LiveSearch = ({ searchData, title, placeholder }) => {
   const [results, setResults] = useState([]);
   const [cursor, setCursor] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const selectedElement = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -17,9 +19,9 @@ const LiveSearch = ({ searchData, title, placeholder }) => {
           .then((newResults) => {
             setIsLoading(false);
             setCursor(0);
-            newResults ? setResults(newResults) : setResults([])
+            newResults ? setResults(newResults) : setResults([]);
           })
-          .catch(error => {
+          .catch((error) => {
             setIsLoading(false);
             setCursor(0);
             setResults([]);
@@ -31,26 +33,39 @@ const LiveSearch = ({ searchData, title, placeholder }) => {
     return () => clearTimeout(timer);
   }, [inputValue, searchData]);
 
+  useEffect(() => {
+    if (selectedElement && selectedElement.current) {
+      selectedElement.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'end',
+      });
+      console.log(inputRef.current);
+    }
+  }, [cursor]);
+
   const makeBold = (text, match) => {
     const re = new RegExp(match, 'gi');
-    const toRet = text.replace(re, str => `<b>${str}</b>`);
+    const toRet = text.replace(re, (str) => `<b>${str}</b>`);
 
-  return toRet;
-  }
+    return toRet;
+  };
 
-  const resultsJSX = () => (
-    <ul className='LiveSearch__resultList'>
-      {results.map((result, index) => (
-        <li
-          key={result.id}
-          className={`LiveSearch__resultItem ${
-            cursor === index ? 'LiveSearch__resultItem--selected' : ''
-          }`}
-          dangerouslySetInnerHTML={{__html: `<span>${makeBold(result.name, inputValue)}</span>`}}
-        />
-      ))}
-    </ul>
-  );
+  const resultsJSX = () => {
+    const list = results.map((result, index) => (
+      <li
+        ref={cursor === index ? selectedElement : null}
+        key={result.id}
+        className={`LiveSearch__resultItem ${
+          cursor === index ? 'LiveSearch__resultItem--selected' : ''
+        }`}
+        dangerouslySetInnerHTML={{
+          __html: `<span>${makeBold(result.name, inputValue)}</span>`,
+        }}
+      />
+    ));
+    return <ul className='LiveSearch__resultList'>{list}</ul>;
+  };
 
   function handleKeyDown(e) {
     if (e.keyCode === 38 && cursor > 0) {
@@ -63,15 +78,16 @@ const LiveSearch = ({ searchData, title, placeholder }) => {
   return (
     <div className='LiveSearch'>
       <p className='LiveSearch__title'>{title}</p>
-      <div className="LiveSearch__searchWrapper">
-      <input
-        className='LiveSearch__input'
-        placeholder={placeholder}
-        value={inputValue}
-        onChange={(event) => setInputValue(event.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-      {isLoading ? <Spinner /> : <img src={searchSVG} alt="Search" />}
+      <div className='LiveSearch__searchWrapper'>
+        <input
+          className='LiveSearch__input'
+          placeholder={placeholder}
+          value={inputValue}
+          onChange={(event) => setInputValue(event.target.value)}
+          onKeyDown={handleKeyDown}
+          ref={inputRef}
+        />
+        {isLoading ? <Spinner /> : <SvgSearch />}
       </div>
       {results && results.length > 0 && resultsJSX()}
     </div>

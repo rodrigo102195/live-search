@@ -3,6 +3,7 @@
   $normal-width: 279px;
   $padding-input: 12px;
   $selected-color: #f1f1f1;
+  $hover-color: #9d00d5;
 
   margin: 0 auto;
   max-width: $normal-width;
@@ -15,11 +16,15 @@
   &__searchWrapper {
     position: relative;
 
-    img {
+    svg {
       position: absolute;
       top: 25%;
       right: 10px;
     }
+  }
+  
+  &--hover-color {
+    fill:#9d00d5;
   }
 
   &__input {
@@ -35,7 +40,7 @@
       background-color: $selected-color;
     }
     &:focus {
-      border: 1px solid #9d00d5;
+      border: 1px solid $hover-color;
       box-shadow: 0px 0px 4px rgba(157, 0, 212, 0.25);
     }
   }
