@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/live-search/static/css/main.2f2e0c6c.chunk.css",
+    "main.js": "/live-search/static/js/main.9b3ff89e.chunk.js",
+    "main.js.map": "/live-search/static/js/main.9b3ff89e.chunk.js.map",
+    "runtime-main.js": "/live-search/static/js/runtime-main.76ee1668.js",
+    "runtime-main.js.map": "/live-search/static/js/runtime-main.76ee1668.js.map",
+    "static/js/2.623d1e39.chunk.js": "/live-search/static/js/2.623d1e39.chunk.js",
+    "static/js/2.623d1e39.chunk.js.map": "/live-search/static/js/2.623d1e39.chunk.js.map",
+    "static/js/3.0ba21287.chunk.js": "/live-search/static/js/3.0ba21287.chunk.js",
+    "static/js/3.0ba21287.chunk.js.map": "/live-search/static/js/3.0ba21287.chunk.js.map",
+    "index.html": "/live-search/index.html",
+    "static/css/main.2f2e0c6c.chunk.css.map": "/live-search/static/css/main.2f2e0c6c.chunk.css.map",
+    "static/js/2.623d1e39.chunk.js.LICENSE.txt": "/live-search/static/js/2.623d1e39.chunk.js.LICENSE.txt",
+    "static/media/iconmonstr-search-thin.65a7fd14.svg": "/live-search/static/media/iconmonstr-search-thin.65a7fd14.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.76ee1668.js",
+    "static/js/2.623d1e39.chunk.js",
+    "static/css/main.2f2e0c6c.chunk.css",
+    "static/js/main.9b3ff89e.chunk.js"
+  ]
+}
