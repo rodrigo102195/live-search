@@ -1,6 +1,7 @@
 # Live-search demo
-You must do an npm install and npm install sass.
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live demo](https://rodrigo102195.github.io/live-search/)
+You must do an npm install and npm install sass.\
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
 This project doesn't includes tests.
 
 ## Available Scripts

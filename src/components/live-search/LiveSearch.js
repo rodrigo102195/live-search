@@ -40,7 +40,7 @@ const LiveSearch = ({ searchData, title, placeholder }) => {
         block: 'nearest',
         inline: 'end',
       });
-      console.log(inputRef.current);
+      console.log(inputRef);
     }
   }, [cursor]);
 
